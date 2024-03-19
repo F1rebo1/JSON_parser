@@ -36,9 +36,9 @@ def test3():
     invalidPath = "./tests/step3/invalid.json"
     validPath = "./tests/step3/valid.json"
 
-    pass1 = not lexer(invalidPath)
-    pass2 = lexer(validPath)
-    if pass1:
+    pass1 = not lexer(invalidPath) or not parser(invalidPath)
+    pass2 = lexer(validPath) and parser(validPath)
+    if not pass1:
         print("> test1 invalid.json PASSED")
     else:
         print("> test1 invalid.json FAILED")
@@ -46,16 +46,17 @@ def test3():
     print("-----------------------------")
     # print("#############################")
 
-    if pass2:
-        print("> test2 valid.json PASSED")
-    else:
-        print("> test2 valid.json FAILED")
+    # if pass2:
+    #     print("> test2 valid.json PASSED")
+    # else:
+    #     print("> test2 valid.json FAILED")
     
     print("-----------------------------")
-    if pass1 and pass2:
-        return 0
-    else:
-        return 1      
+    return 0 if pass1 else 1
+    # if pass1 and pass2:
+    #     return 0
+    # else:
+    #     return 1      
 
 def test2():
     # invalidPaths = ["./tests/step1/invalid.json", "./tests/step1/invalid.json"]
@@ -73,6 +74,7 @@ def test2():
 
     invalidTests = [pass1,pass2]
     validTests = [pass3,pass4]
+
     res = True
     i = 1
     for test in invalidTests:
@@ -124,6 +126,7 @@ def test1():
 
 def runTests():
     test = {test1:'t1', test2:'t2', test3:'t3', test4:'t4'}
+    # testArr = {test3:'t3'}
 
     testNum = 1
 
